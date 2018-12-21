@@ -1,8 +1,7 @@
 """
 Docstring
 """
-import socket
-from flask import Flask
+from flask import Flask, request
 
 APP = Flask(__name__)
 
@@ -12,8 +11,9 @@ def hello():
     """
     Docstring
     """
+    client_ip = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
 
-    return f'<h3>Hello!</h3><b>Hostname:</b>{socket.gethostname()}<br/>'
+    return f'<h3>Hello!</h3> <br/><b>client ip: </b>{client_ip}<br/>'
 
 
 if __name__ == "__main__":
