@@ -5,5 +5,6 @@ COPY init.sql /docker-entrypoint-initdb.d/
 #
 # docker build -t pgbrew:latest .
 # docker run --name pgdock -d -p 5432:5432 pgbrew
-# export PGPASSWORD="password"
+# export PGPASSWORD="demopwd"
 # psql -h localhost -U demo -d demodb
+#
