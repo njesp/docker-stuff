@@ -1,6 +1,7 @@
 # Oracle Database og Docker
 * Oracle Database images skal bygges lokalt fra downloads
 * Derved sikrer de sig accept af licens (eller kan man ikke downloade)
+* Nedenfor nævnte images (XE og EE) haves på lager (.gz filerne)
 ## På Linux bygges image og eksporteres 
 * git clone git@github.com:oracle/docker-images.git
 * cd docker-images/OracleDatabase/SingleInstance/dockerfiles
@@ -26,7 +27,7 @@
 * Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-All
 * Docker settings, shared drives, sæt hak i c: i settings for Docker
 * Docker settings, containers skal være linux for at køre Oracle
-* Start som dæmon, tager noget tid
+* Start som dæmon, tager noget tid første gang
 ```
 docker run --name xedocker -d -p 1521:1521 -p 5500:5500 \
 -e ORACLE_PWD=oracle -e ORACLE_CHARACTERSET=AL32UTF8 \
