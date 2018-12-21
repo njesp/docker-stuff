@@ -4,7 +4,7 @@ ENV POSTGRES_DB demodb
 COPY init.sql /docker-entrypoint-initdb.d/
 #
 # docker build -t pgbrew:latest .
-# docker run --name pgdock -d -p 5432:5432 pgbrew
+# docker run --name pgdck -d -p 5432:5432 pgbrew
 # export PGPASSWORD="demopwd"
 # psql -h localhost -U demo -d demodb
 #
