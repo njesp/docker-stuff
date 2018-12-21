@@ -1,0 +1,63 @@
+https://blog.docker.com/2016/09/dockerforws2016/
+https://blog.docker.com/2017/12/top-5-blogs-of-2017-build-and-run-your-first-docker-windows-server-container/
+
+
+
+Images havner her c:\ProgramData\Docker
+
+docker run -it microsoft/windowsservercore powershell -c "Write-Host $PSVersionTable.PSVersion; [System.Environment]::OSVersion.Version"
+#docker pull microsoft/mssql-server-windows-developer
+docker run --name mssql -d -p 1433:1433 -e sa_password=XpassworD87 -e ACCEPT_EULA=Y microsoft/mssql-server-windows-developer
+sqlcmd -S localhost -Usa -PXpassworD87
+select @@version;
+go
+exit
+
+
+
+
+
+docker logs mssql
+docker start mssql
+docker stop mssql
+docker rm mssql
+
+docker images
+
+
+docker ps -a -q | % { docker stop $_ }
+docker ps -a -q | % { docker rm $_ }
+docker images -q | % { docker rmi $_ }
+
+
+docker-compose up
+
+Win 2019
+
+
+Pxwd01December
+
+
+https://www.ntweekly.com/2018/11/03/install-docker-on-windows-server-2019/
+https://blog.sixeyed.com/getting-started-with-docker-on-windows-server-2019/
+
+#Sæt Powershell som default shell
+
+Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -name Shell -Value 'PowerShell.exe -noExit'  
+
+#Installer Container feature 
+
+Install-WindowsFeature -Name Containers
+
+#Ingen grund til at brænde CPU af på Windows Defender
+
+Uninstall-WindowsFeature Windows-Defender
+
+# Boot
+
+Restart-Computer -Force
+
+sconfig, enable remote desktop (7), set winupdate til manuel, installer alle updates (6)
+
+
+Install-Module -Name DockerMsftProvider -Repository PSGallery -Force
