@@ -24,7 +24,7 @@ def hello():
             v.time_of_visit desc fetch first 100 rows only
     """
     client_ip = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
-    con = psycopg2.connect("dbname=demodb user=demo password=demopwd host=localhost port=5432")
+    con = psycopg2.connect("dbname=demodb user=demo password=demopwd host=db port=5432")
     cur = con.cursor()
     cur.execute(sql_insert, {"client_ip": client_ip})
     cur.execute(sql_query)
