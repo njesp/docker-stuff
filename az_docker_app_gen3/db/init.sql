@@ -10,7 +10,7 @@ drop table if exists visits;
 
 create table visits (
     time_of_visit timestamp(6) not null default current_timestamp
-    , client_ip inet not null
+    , user_agent text not null
 );
 
 create index time_of_visit_ix on visits (time_of_visit);
