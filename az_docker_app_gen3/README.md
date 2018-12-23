@@ -3,9 +3,9 @@
 
 Hensigten er at få denne app til at trille på Azure. 
 
-Applikationen virker fint lokalt.
+Applikationen virker fint lokalt og på Azure
 
-Bygger på Docker og Docker-compose. 
+Bygger på Docker, Docker-compose og Azure App Services
 
 Applikationen har en database (PostgreSQL, hvad ellers) i bunden og en web applikation ovenpå (Python-baseret. hvad ellers). 
 
@@ -21,6 +21,14 @@ Data i databasen er persisteret i containeren. så det er forfra ved rebuild. En
 
 Datamodellen i databasen bygges ind i data-containeren med et init-script.
 
-Deploy til Azure tænkes foregå med Azure CLI, så det kan gentages ensartet.
+Deploy til Azure foregår med Azure CLI, så det kan gentages ensartet. CLI-kommandoerne er scriptet i Powershell, som kan køre på Windows og Linux. 
 
 Alternativ deployment er via Kubernetes. 
+
+Patches af software kommer på via docker build, som trækker seneste patchede base images.
+
+Ved loadbalencerede apps kan frontend containers skiftes ud en af gangen. Databasebackend er vanskeligere at patche uden nedetid, men der kommer DBaaS ind i billedet (så gør Microsoft det)
+
+Kunne formentlig trivielt deployes på Amazons Cloud (AWS) uden større ændringer. 
+
+Hvis ens Azure er lukket ned i forhold til omverdenen, så komplicerer det sagerne (i hvert fald ved Azure App Services).
