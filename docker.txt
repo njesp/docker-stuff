@@ -41,7 +41,7 @@ Pxwd01December
 https://www.ntweekly.com/2018/11/03/install-docker-on-windows-server-2019/
 https://blog.sixeyed.com/getting-started-with-docker-on-windows-server-2019/
 
-#Sæt Powershell som default shell
+#Sï¿½t Powershell som default shell
 
 Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -name Shell -Value 'PowerShell.exe -noExit'  
 
@@ -49,7 +49,7 @@ Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlo
 
 Install-WindowsFeature -Name Containers
 
-#Ingen grund til at brænde CPU af på Windows Defender
+#Ingen grund til at brï¿½nde CPU af pï¿½ Windows Defender
 
 Uninstall-WindowsFeature Windows-Defender
 

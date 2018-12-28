@@ -1,0 +1,51 @@
+Meget af dette vedrørende Postgres findes på https://github.com/njesp/postgres-bits
+
+
+sudo mkdir /home/niels/postgres
+sudo docker run --name pg -e POSTGRES_PASSWORD=password -d -p 5432:5432 -v /home/niels/postgres:/var/lib/postgresql/data postgres
+sudo docker stop pg
+sudo docker start pg 
+sudo docker rm pg
+
+SET PGPASSWORD=password
+"c:\Program Files\PostgreSQL\11\bin\psql" -h localhost -U postgres -d postgres
+
+SET PGPASSWORD=password
+"c:\Program Files\PostgreSQL\11\bin\psql" -h 192.168.0.34 -U postgres -d postgres
+
+sudo docker login -u njesp 
+sudo docker pull store/oracle/database-enterprise:12.2.0.1
+sudo docker run -d -it --name oradocker -p 1521:1521 store/oracle/database-enterprise:12.2.0.1
+
+sudo docker stop oradocker
+sudo docker start oradocker 
+sudo docker rm oradocker
+
+
+
+sqlplus sys/Oradoc_db1@192.168.0.34/ORCLPDB1.localdomain as sysdba
+
+create user niels identified by niels;
+alter user niels quota unlimited on users;
+grant connect, resource to niels;
+
+sqlplus niels/niels@192.168.0.34/ORCLPDB1.localdomain
+
+cx_Oracle.connect("niels/niels@192.168.0.34/ORCLPDB1.localdomain")
+
+
+docker create -v /config --name dataContainer busybox
+docker cp config.conf dataContainer:/config/
+docker run --volumes-from dataContainer ubuntu ls/config
+docker export dataContainer > dataContainer.tar
+docker import dataContainer.tar
+
+
+
+-- pgadmin
+
+sudo docker run --name pgadm -p 82:80 -e "PGADMIN_DEFAULT_EMAIL=niels@jespersen.info" -e "PGADMIN_DEFAULT_PASSWORD=password" -d dpage/pgadmin4
+
+-- elsaticsearch
+
+docker run --name elasticdocker -p 9200:9200 -p 9300:9300 -d -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:6.5.3

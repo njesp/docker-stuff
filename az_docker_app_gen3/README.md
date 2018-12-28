@@ -1,11 +1,14 @@
 
 # Multi-container app via docker-compose. 
 
-Hensigten er at få denne app til at trille på Azure. 
+Samme app virker lokalt på Linux og Windows. Uden ændringer. 
 
-Applikationen virker fint lokalt og på Azure
+Den virker også uden ændringer på Azure App Services og på Google Cloud
 
-Bygger på Docker, Docker-compose og Azure App Services
+Deployment scripts Powershell og kører enten på Windows Powershell eller på Linux på Powershell Core.
+
+
+Bygget med Docker og docker-compose til at få lagene til at hænge sammen. 
 
 Applikationen har en database (PostgreSQL, hvad ellers) i bunden og en web applikation ovenpå (Python-baseret. hvad ellers). 
 
@@ -19,20 +22,19 @@ Peg en web-browser mod http://localhost for at se applikationen i al sin magt og
 
 Azure deployment af Appen nås fra http://njn-dockerizedmultiimage.azurewebsites.net/
 
-Azure deployment har ikke imponerende svartider, formentlig fordi der er valgt en fattigrøvs pricing-tier.
+Google Cloud instansen har en rigtig ip http://35.204.205.142/
+
 
 Data i databasen er persisteret i containeren. så det er forfra ved rebuild. Enten kan data peges ud af databasen med et volume og -v flag eller database-containeren kan erstattes af en database-service eksternt.
 
 Datamodellen i databasen bygges ind i data-containeren med et init-script.
 
-Deploy til Azure foregår med Azure CLI, så det kan gentages ensartet. CLI-kommandoerne er scriptet i Powershell, som kan køre på Windows og Linux. 
+Deploy til Azure foregår med Azure CLI, så det kan gentages ensartet. CLI-kommandoerne er scriptet i Powershell.
 
 Alternativ (til docker compose) deployment er via Kubernetes. 
 
 Patches af software kommer på via docker build, som trækker seneste patchede base images.
 
 Ved loadbalencerede apps kan frontend containers skiftes ud en af gangen. Databasebackend er vanskeligere at patche uden nedetid, men der kommer DBaaS ind i billedet (så gør Microsoft det)
-
-Kunne formentlig trivielt deployes på Amazons Cloud (AWS) uden større ændringer. 
 
 Hvis ens Azure er lukket ned i forhold til omverdenen, så komplicerer det sagerne (i hvert fald ved Azure App Services).
