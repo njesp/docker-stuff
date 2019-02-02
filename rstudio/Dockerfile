@@ -1,11 +1,138 @@
 FROM rocker/verse:latest
 ADD ./oracle_client.rpm /oracle_client.rpm
-RUN apt-get update -qq && apt-get -y --no-install-recommends install \
-    subversion alien  && install2.r --error \
-    --deps TRUE \
-    reshape2 
-RUN alien -i oracle_client.rpm
-RUN rm -f oracle_client.rpm
+ADD ./oracle_client_devel.rpm /oracle_client_devel.rpm
+RUN apt-get update -qq && apt-get -y --no-install-recommends install subversion alien 
+RUN alien -i oracle_client.rpm && alien -i oracle_client_devel.rpm
+RUN rm -f oracle_client*.rpm
+ARG OCI_INC=/usr/include/oracle/18.3/client64
+ARG OCI_LIB=/usr/lib/oracle/18.3/client64/lib
+ARG LD_LIBRARY_PATH=/usr/lib/oracle/18.3/client64/lib
 RUN install2.r --error \
     --deps TRUE \
     ROracle
+RUN install2.r --error \
+    --deps TRUE \    
+    BaylorEdPsych \
+    CADFtest \
+    CALIBERrfimpute \
+    Epi \
+    Formula \
+    Hmisc \
+    ISLR \
+    Matching \
+    MatchingFrontier \
+    ModelGood \
+    MortalitySmooth \
+    RCircos \
+    SamplingStrata \
+    VIM \
+    Zelig \
+    boot \
+    broom \
+    car \
+    censReg \
+    circlize \
+    cobalt \
+    coin \
+    conflicted \
+    data.table \
+    dbplyr \
+    deducorrect \
+    demography \
+    desc \
+    devtools \
+    doBy \
+    dplyr \
+    dynlm \
+    easySdcTable \
+    editrules \
+    egg \
+    evaluate \
+    extrafont \
+    fda \
+    feather \
+    forecast \
+    formatr \
+    ftsa \
+    futile.logger \
+    gam \
+    ggforce \
+    gggraph \
+    ggmap \
+    ggplot2 \
+    ggrader \
+    ggrepel \
+    ggridges \
+    glmnet \
+    gplots \
+    hash \
+    haven \
+    hms \
+    htmltools \
+    httr \
+    imputeTS \
+    jsonlite \
+    kableExtra \
+    keras \
+    knitr \
+    lars \
+    lattice \
+    lcmm \
+    lime \
+    linemap \
+    lubridate \
+    magrittr \
+    mediation \
+    mfx \
+    mgv \
+    mice \
+    missForest \
+    oaxaca \
+    packrat \
+    party \
+    pec \
+    plotly \
+    plumber \
+    poLCA \
+    prodlim \
+    profvis \
+    quantreg \
+    randomForest \
+    reshape2 \
+    rgdal \
+    rlist \
+    rmarkdown \
+    roxygen2 \
+    sampling \
+    samplingbook \
+    sandwich \
+    sdcMicro \
+    sdcTable \
+    sf \
+    shiny \
+    shinydashboard \
+    simputation \
+    smoothAPC \
+    snow \
+    spatial \
+    sqldf \
+    stR \
+    stargazer \
+    stratification \
+    stringdist \
+    stringr \
+    styler \
+    survey \
+    svUnit \
+    tables \
+    tabplot \
+    testthat \
+    tidyr \
+    tidyverse \
+    tikzDevice \
+    timereg \
+    tree \
+    validate \
+    x12 \
+    xtable \
+    zoo
