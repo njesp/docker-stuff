@@ -10,6 +10,7 @@ ARG LD_LIBRARY_PATH=/usr/lib/oracle/18.3/client64/lib
 RUN install2.r --error \
     --deps TRUE \
     ROracle
+ENV LD_LIBRARY_PATH /usr/lib/oracle/18.3/client64/lib:${LD_LIBRARY_PATH}
 RUN install2.r --error \
     --deps TRUE \    
     BaylorEdPsych \
