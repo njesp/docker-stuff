@@ -1,20 +1,20 @@
 #!/bin/bash
-# docker machine demo
-az login
+#az login
 az group delete --name "docker-machine" --yes
 sub=$(az account show --query "id" -o tsv)
-sudo docker-machine create --driver azure \
-    -azure-location 'West Europe' \
+docker-machine create --driver azure \
+    --azure-location 'West Europe' \
     --azure-size 'Standard_B1ms' \
-    -azure-open-port 8000 \
+    --azure-open-port 8000 \
     --azure-subscription-id $sub m01
-sudo docker-machine env m01
-eval $(sudo docker-machine env m01) 
-sudo docker run busybox echo hello world
-sudo docker run --name ngx2 -d -p 8000:80 nginx
+docker-machine env m01
+eval $(docker-machine env m01) 
+docker run busybox echo hello world
+docker run --name ngx -d -p 8000:80 nginx
 curl $(docker-machine ip m01):8000
-sudo docker stop ngx2
-sudo docker-machine rm m01
-sudo docker-machine ls
+docker stop ngx
+docker rm ngx
+docker-machine rm m01 -y
+docker-machine ls
 az group delete --name "docker-machine" --yes
 #
