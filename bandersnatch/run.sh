@@ -1,0 +1,1 @@
+sudo docker run --name bsn -v /home/niels/pypi:/data njesp/bsn bandersnatch mirror
