@@ -9,4 +9,8 @@ RUN apt-get update \
     && apt autoremove -y \
     && pip3 install bandersnatch
 COPY bandersnatch.conf /etc/
+COPY wincacerts.pem /tmp
+ENV REQUESTS_CA_BUNDLE /tmp/wincacerts.pem
+ENV HTTP_PROXY http://proxy.dst.dk:3128/
+ENV HTTPS_PROXY http://proxy.dst.dk:3128/
 VOLUME /data
